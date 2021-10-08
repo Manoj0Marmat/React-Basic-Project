@@ -141,6 +141,8 @@ main {
 }
 
 .container {
+  visibility: hidden;
+  position: fixed;
   width: 90vw;
   margin: 5rem 0;
   max-width: var(--fixed-width);
@@ -150,11 +152,13 @@ main {
   box-shadow: var(--dark-shadow);
 }
 .container h3 {
+  visibility: hidden;
   font-weight: normal;
   text-transform: none;
   margin-bottom: 2rem;
 }
 .person {
+  visibility: hidden;
   display: grid;
   grid-template-columns: auto 1fr;
   column-gap: 0.75rem;
@@ -175,6 +179,7 @@ main {
   margin-bottom: 0;
 }
 .container button {
+  visibility: hidden;
   color: var(--clr-white);
   display: block;
   width: 100%;
