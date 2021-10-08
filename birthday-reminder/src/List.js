@@ -1,16 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import gsap from "gsap";
 
 const List = ({ people }) => {
   let images = useRef(null);
   let tl = new gsap.timeline();
   const animation = (el) => {
-    images = el;
-    gsap.to(images, { duration: 5, css: { visibility: "visible" } }, 3);
-    // console.log(lastImg);
+    if (people.length > 0) {
+      images = el;
+      gsap.to(images, { duration: 5, css: { visibility: "visible" } }, 3);
 
-    tl.from(images, { duration: 2, x: 1280 }, 3);
-    // tl.from(firstImg && lastImg, { duration: 0.5, y: 1280 });
+      tl.from(images, { duration: 2, x: 1280 }, 3);
+    }
   };
   return (
     <>
