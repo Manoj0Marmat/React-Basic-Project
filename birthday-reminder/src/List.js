@@ -2,14 +2,25 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 
 const List = ({ people }) => {
+  let element = [];
+  let delay = 2;
   let images = useRef(null);
   let tl = new gsap.timeline();
   const animation = (el) => {
     if (people.length > 0) {
       images = el;
-      gsap.to(images, { duration: 5, css: { visibility: "visible" } }, 3);
-
-      tl.from(images, { duration: 2, x: 1280 }, 3);
+      element.push(images);
+      if (people.length === element.length) {
+        element.map((article) => {
+          delay += 0.2;
+          gsap.to(
+            article,
+            { duration: 5, css: { visibility: "visible" } },
+            delay
+          );
+          tl.from(article, { duration: 2, x: 1280 }, delay);
+        });
+      }
     }
   };
   return (
