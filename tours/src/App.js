@@ -6,6 +6,7 @@ import Tours from "./Tours";
 const url = "https://course-api.com/react-tours-project";
 function App() {
   const [loading, setLoading] = useState(true);
+  const [tours, setTours] = useState([]);
 
   if (loading) {
     return (
@@ -14,11 +15,10 @@ function App() {
       </main>
     );
   }
-  fetch(url).then((resp)=>resp.json()        )
   return (
-    <section className="container">
-      <h1>Tours Project Setup</h1>
-    </section>
+    <main>
+      <Tours />
+    </main>
   );
 }
 
