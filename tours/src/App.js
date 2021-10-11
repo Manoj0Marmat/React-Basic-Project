@@ -5,6 +5,16 @@ import Tours from "./Tours";
 // I SWITCHED TO PERMANENT DOMAIN
 const url = "https://course-api.com/react-tours-project";
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  if (loading) {
+    return (
+      <main>
+        <Loading />
+      </main>
+    );
+  }
+  fetch(url).then((resp)=>resp.json()        )
   return (
     <section className="container">
       <h1>Tours Project Setup</h1>
