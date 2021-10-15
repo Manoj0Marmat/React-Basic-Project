@@ -1,10 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import gsap from "gsap";
 
-const Tour = ({ id, name, info, image, price, removeTour }) => {
+const Tour = ({ id, name, info, image, price, removeTour, loading }) => {
   const [readMore, setReadMore] = useState(false);
+  let images = useRef(null);
+  useEffect(() => {
+    gsap.from(images, { duration: 0.9, scale: 1.2 });
+  });
+  const onMouseIn = ({ currentTarget }) => {
+    gsap.to(currentTarget, { scale: 1.019, borderRadius: 30 });
+  };
+  const onMouseOut = ({ currentTarget }) => {
+    gsap.to(currentTarget, { scale: 0.9, borderRadius: 0 });
+  };
   return (
-    <article className="single-tour">
-      <img src={image} alt={name} />
+    <article
+      className="single-tour"
+      onMouseEnter={onMouseIn}
+      onMouseLeave={onMouseOut}
+    >
+      <img
+        src={image}
+        alt={name}
+        ref={(el) => (images = el)}
+        onMouseEnter={onMouseIn}
+        onMouseLeave={onMouseOut}
+      />
       <footer>
         <div className="tour-info">
           <h4>{name}</h4>
