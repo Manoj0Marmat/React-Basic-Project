@@ -8,12 +8,24 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [tours, setTours] = useState([]);
 
+  const removeTour = (id) => {
+    const newTour = tours.filter((tour) => tour.id !== id);
+    setTours(newTour);
+  };
+
   const fetchTours = async () => {
     setLoading(true);
-    const response = await fetch(url);
-    const tours = await response.json();
-    console.log(tours);
+    try {
+      const response = await fetch(url);
+      const tours = await response.json();
+      setLoading(false);
+      setTours(tours);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
   };
+
   // const fetchTours = async () => {
   //   setLoading(true);
   //   fetch(url)
@@ -43,9 +55,22 @@ function App() {
       </main>
     );
   }
+  if (tours.length === 0) {
+    return (
+      <main>
+        <div class="title">
+          <h2>No tours left</h2>
+          <button className="btn" onClick={fetchTours}>
+            {" "}
+            Refresh
+          </button>
+        </div>
+      </main>
+    );
+  }
   return (
     <main>
-      <Tours />
+      <Tours tours={tours} removeTour={removeTour} />
     </main>
   );
 }
