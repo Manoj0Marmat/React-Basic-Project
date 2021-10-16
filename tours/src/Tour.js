@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
+import math from Math
 import gsap from "gsap";
 
 const Tour = ({ id, name, info, image, price, removeTour, loading }) => {
   const [readMore, setReadMore] = useState(false);
   let images = useRef(null);
   useEffect(() => {
-    gsap.from(images, { duration: 0.9, scale: 1.2 });
+    gsap.from(images, { duration: 2 * Math.PI, scale: 0.81 });
   });
   const onMouseIn = ({ currentTarget }) => {
     gsap.to(currentTarget, { scale: 1.019, borderRadius: 30 });
