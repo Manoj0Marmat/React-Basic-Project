@@ -1,18 +1,38 @@
 import React, { useState, useRef, useEffect } from "react";
-import math from Math
 import gsap from "gsap";
 
-const Tour = ({ id, name, info, image, price, removeTour, loading }) => {
+const Tour = ({ id, name, info, image, price, removeTour }) => {
   const [readMore, setReadMore] = useState(false);
   let images = useRef(null);
   useEffect(() => {
-    gsap.from(images, { duration: 2 * Math.PI, scale: 0.81 });
+    gsap.to(images, {
+      duration: 0.8,
+      scale: 0.9,
+      borderRadius: 0,
+    });
   });
   const onMouseIn = ({ currentTarget }) => {
-    gsap.to(currentTarget, { scale: 1.019, borderRadius: 30 });
+    gsap.to(currentTarget, {
+      duration: 0.8,
+      scale: 1.01,
+      borderRadius: 30,
+    });
+    gsap.to(images, {
+      scale: 1.01,
+      borderRadius: 30,
+    });
   };
   const onMouseOut = ({ currentTarget }) => {
-    gsap.to(currentTarget, { scale: 0.9, borderRadius: 0 });
+    gsap.to(currentTarget, {
+      duration: 0.8,
+      scale: 0.9,
+      borderRadius: 0,
+    });
+    gsap.to(images, {
+      duration: 0.8,
+      scale: 0.9,
+      borderRadius: 0,
+    });
   };
   return (
     <article
@@ -20,13 +40,9 @@ const Tour = ({ id, name, info, image, price, removeTour, loading }) => {
       onMouseEnter={onMouseIn}
       onMouseLeave={onMouseOut}
     >
-      <img
-        src={image}
-        alt={name}
-        ref={(el) => (images = el)}
-        onMouseEnter={onMouseIn}
-        onMouseLeave={onMouseOut}
-      />
+      <div className="tour-image">
+        <img src={image} alt={name} ref={(el) => (images = el)} />
+      </div>
       <footer>
         <div className="tour-info">
           <h4>{name}</h4>

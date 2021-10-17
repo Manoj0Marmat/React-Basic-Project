@@ -3,20 +3,13 @@ import Tour from "./Tour";
 const Tours = ({ tours, removeTour, loading }) => {
   return (
     <section>
-      <div class="title">
+      <div className="title">
         <h2>Our Tours</h2>
-        <div class="underline"></div>
+        <div className="underline"></div>
       </div>
       <div>
         {tours.map((tour) => {
-          return (
-            <Tour
-              key={tours.id}
-              {...tour}
-              removeTour={removeTour}
-              loading={loading}
-            />
-          );
+          return <Tour key={tours.id} {...tour} removeTour={removeTour} />;
         })}
       </div>
     </section>
