@@ -3,3 +3,9 @@ node_modules
 .DS_Store
 
 build
+
+._.DS_Store
+._build
+._node_modules
+._public
+._src
