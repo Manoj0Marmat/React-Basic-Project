@@ -1,2 +1,2 @@
 <h1>Live Demo</h1>
-https://mm-accordion.netlify.app/
+https://manojmarmat-accordion.netlify.app/
